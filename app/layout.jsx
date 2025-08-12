@@ -2,8 +2,8 @@ import { ThemeProvider } from "@/components/theme-provider";
 import "./globals.css";
 
 export const metadata = {
-  title: "Random Password Generator",
-  description: "Random password generator",
+  title: "Password Generator",
+  description: "A simple password generator",
 };
 
 export default function RootLayout({ children }) {

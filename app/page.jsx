@@ -84,6 +84,11 @@ export default function HomePage() {
     setPasswords(generated);
     setCopiedIndex(0);
     window.getSelection()?.removeAllRanges();
+
+    // reset scroll
+    if (allPasswordsRef.current) {
+      allPasswordsRef.current.scrollTop = 0;
+    }
   };
 
   const copyToClipboard = (text, el) => {
@@ -104,14 +109,32 @@ export default function HomePage() {
   const handleCopy = () => {
     const text = passwords[copiedIndex];
     const el = passwordRefs.current[copiedIndex];
+    const container = allPasswordsRef.current;
+
+    if (!text || !el || !container) return;
+
+    // copy and select text
     copyToClipboard(text, el);
 
+    // scroll into view
+    el.scrollIntoView({
+      behavior: "smooth",
+      block: "nearest",
+    });
+
+    // repeat index
     const nextIndex = (copiedIndex + 1) % passwords.length;
     setCopiedIndex(nextIndex);
   };
 
   const handleCopyAll = () => {
     const text = passwords.join("\n");
+
+    // scroll to top
+    if (allPasswordsRef.current) {
+      allPasswordsRef.current.scrollTop = 0;
+    }
+
     copyToClipboard(text, allPasswordsRef.current ?? undefined);
   };
 

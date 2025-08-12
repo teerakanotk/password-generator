@@ -33,9 +33,15 @@ const options = [
 ];
 
 const FormSchema = z.object({
-  length: z.coerce.number().min(4).max(32),
-  quantity: z.coerce.number().min(1).max(500),
-  options: z.array(z.string()).refine((value) => value.length > 0, {
+  length: z.coerce
+    .number()
+    .min(4, "Password length must be at least 4 characters")
+    .max(32, "Password length must not exceed 32 characters"),
+  quantity: z.coerce
+    .number()
+    .min(1, "You must generate at least 1 password")
+    .max(500, "You can generate up to 500 passwords"),
+  options: z.array(z.string()).refine((value) => value.some((item) => item), {
     message: "Please select at least one character type",
   }),
   saveSetting: z.boolean().optional(),
@@ -110,7 +116,7 @@ export default function HomePage() {
   };
 
   return (
-    <div className="max-w-lg mx-auto p-4 space-y-4">
+    <div className="max-w-lg mx-auto p-4 py-12 space-y-4">
       <h1 className="text-2xl font-bold text-center mb-6">
         Password Generator
       </h1>
@@ -223,7 +229,7 @@ export default function HomePage() {
       {passwords.length > 0 && (
         <div
           ref={allPasswordsRef}
-          className="max-h-[30vh] overflow-auto p-4 border rounded-md"
+          className="max-h-[40vh] overflow-auto p-4 border rounded-md"
         >
           {passwords.map((item, index) => (
             <div key={index} ref={(el) => (passwordRefs.current[index] = el)}>

@@ -1,36 +1,48 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# 🔑 Password Generator
 
-## Getting Started
+**Password Generator** is a [Next.js](https://nextjs.org/) application for generating secure random passwords with customizable options.
 
-First, run the development server:
+![readme-screenshots](/public/readme-screenshots.png)
+
+---
+
+## ✨ Features
+
+- ✅ Customizable options via checkboxes
+- ✅ Automatic persistence of settings in the browser
+- ✅ Adjustable password length (4–32 characters)
+- ✅ Generate up to **500 passwords per round**
+- ✅ Copy a single line (with auto-scroll + next-line copy)
+- ✅ Copy all passwords at once
+
+---
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+- [Node.js](https://nodejs.org/) (v18 or later)
+- [pnpm](https://pnpm.io/)
+
+### Installation
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+# Clone the repository
+git clone https://github.com/teerakanotk/password-generator.git
+
+# Navigate into the project
+cd password-generator
+
+# Install dependencies
+pnpm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Running Locally
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+```bash
+pnpm dev
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Then open http://localhost:3000 in your browser.
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---

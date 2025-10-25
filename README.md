@@ -1,48 +1,37 @@
-# 🔑 Password Generator
+# Password Generator
 
-**Password Generator** is a [Next.js](https://nextjs.org/) application for generating secure random passwords with customizable options.
+A simple and secure password generator with customizable options — built for flexibility and ease of use.
 
 ![readme-screenshots](/public/readme-screenshots.png)
 
----
+## Features
 
-## ✨ Features
+- Customizable options via checkboxes
+- Automatic persistence of settings in the browser
+- Adjustable password length (4–32 characters)
+- Generate up to 500 passwords per round
+- Copy a single line (auto-scroll and next-line copy supported)
+- Copy all passwords at once
 
-- ✅ Customizable options via checkboxes
-- ✅ Automatic persistence of settings in the browser
-- ✅ Adjustable password length (4–32 characters)
-- ✅ Generate up to **500 passwords per round**
-- ✅ Copy a single line (with auto-scroll + next-line copy)
-- ✅ Copy all passwords at once
+## Getting Started
 
----
-
-## 🚀 Getting Started
-
-### Prerequisites
-
-- [Node.js](https://nodejs.org/) (v18 or later)
-- [pnpm](https://pnpm.io/)
-
-### Installation
+### 1. Clone the repository
 
 ```bash
-# Clone the repository
 git clone https://github.com/teerakanotk/password-generator.git
-
-# Navigate into the project
 cd password-generator
+```
 
-# Install dependencies
+### 2. Install dependencies
+
+```bash
 pnpm install
 ```
 
-### Running Locally
+### 3. Run the development server
 
 ```bash
 pnpm dev
 ```
 
-Then open http://localhost:3000 in your browser.
-
----
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.

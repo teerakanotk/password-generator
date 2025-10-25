@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { settingSchema } from "@/lib/schemas/setting";
+import { settingSchema } from "@/lib/zod";
 import { useFormPersistence } from "@/hooks/use-form-persistence";
 import { genPass } from "@/lib/genpass";
 import { GenerateForm } from "@/components/generate-form";

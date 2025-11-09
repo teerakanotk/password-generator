@@ -1,23 +1,21 @@
 import { useState, useRef, useCallback, useEffect } from "react";
-import { generatePassword } from "@/lib/generate-password";
+import { generatePassword, PasswordOptions } from "@/lib/generate-password";
+import { copyToClipboard } from "@/lib/utils";
 
 export function usePasswordGenerator() {
   const [passwords, setPasswords] = useState([]);
   const [copiedIndex, setCopiedIndex] = useState(null);
   const displayRef = useRef(null);
 
-  // Scroll to top of password list
   const scrollToTop = useCallback(() => {
     displayRef.current?.scrollTo({ top: 0, behavior: "smooth" });
   }, []);
 
-  // Scroll to specific password index
   const scrollToIndex = useCallback((index) => {
     const el = displayRef.current?.children?.[index];
     el?.scrollIntoView({ behavior: "smooth", block: "nearest" });
   }, []);
 
-  // ✅ Generate passwords from form data
   const generate = useCallback(
     ({ length, quantity, requiredOptions, optionalOptions }) => {
       const filteredOptional = optionalOptions.filter(
@@ -37,8 +35,8 @@ export function usePasswordGenerator() {
     [scrollToTop]
   );
 
-  // Copy one password at a time
-  const copySingle = useCallback(() => {
+  // Copy one password
+  const copySingle = useCallback(async () => {
     if (!passwords.length) return;
 
     const nextIndex =
@@ -46,25 +44,26 @@ export function usePasswordGenerator() {
         ? 0
         : (copiedIndex + 1) % passwords.length;
 
-    navigator.clipboard.writeText(passwords[nextIndex]);
-    setCopiedIndex(nextIndex);
+    const success = await copyToClipboard(passwords[nextIndex]);
+    if (success) setCopiedIndex(nextIndex);
   }, [passwords, copiedIndex]);
 
-  // Scroll to copied password
+  // Copy all passwords
+  const copyAll = useCallback(async () => {
+    if (!passwords.length) return;
+
+    const success = await copyToClipboard(passwords.join("\n"));
+    if (success) {
+      setCopiedIndex("all");
+      scrollToTop();
+    }
+  }, [passwords, scrollToTop]);
+
   useEffect(() => {
     if (typeof copiedIndex === "number") {
       scrollToIndex(copiedIndex);
     }
   }, [copiedIndex, scrollToIndex]);
-
-  // Copy all passwords
-  const copyAll = useCallback(() => {
-    if (!passwords.length) return;
-
-    navigator.clipboard.writeText(passwords.join("\n"));
-    setCopiedIndex("all");
-    scrollToTop();
-  }, [passwords, scrollToTop]);
 
   return {
     passwords,
